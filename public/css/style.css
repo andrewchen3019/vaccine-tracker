@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('https://images.theconversation.com/files/368988/original/file-20201112-17-100cgy6.jpg?ixlib=rb-1.1.0&rect=1%2C1%2C997%2C661&q=45&auto=format&w=496&fit=clip');
+    background-size: cover;
+}
+header{
+    background-color: red;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+.table{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+.table td{
+    padding: 0.5rem;
+}
+.table td:nth-child(odd){
+    border-right: 1px solid black;
+}
+.available-status{
+    color: green;
+}
+.not-available-status{
+    color:red;
+}
+svg{
+    fill: #03cdff;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+}
+#root{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#mercy-iframe{
+    height: 400px;
+    border-radius: 10px;
+}
+.available{
+    background-color: green;
+}
+.container{
+    margin: 5rem auto;
+    border: 1px solid black;
+    padding: 0.5rem;
+    border-radius: 10px;
+    color: white;
+}
+.status{
+    font-size: 30px;
+}
+.not-available{
+    background-color: red;
+}
