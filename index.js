@@ -38,37 +38,6 @@ app.post("/subscribe", (req, res) => {
 server.listen(5000, () => console.log("Server running on port 5000"));
 
 
-async function walgreens(){
-    console.log("here");
-    const browser = await puppeteer.launch({headless: false});
-    const page = await browser.newPage();
-    await page.goto('https://www.walgreens.com/findcare/vaccination/covid-19/location-screening');
-        // await page.click("a[href='/findcare/vaccination/covid-19/location-screening']");
-        // await page.waitForNavigation();
-    await page.evaluate( () => document.getElementById("inputLocation").value = "07718")
-    await page.click("button[data-reactid='16']");
-    const availableScreen = await page.evaluate(() => {
-        if(document.querySelector(".avaiableScreen")){
-            return true
-        }else return false
-    })
-    console.log(availableScreen)
-    if (availableScreen) {
-        io.emit("walgreensAvailable");
-    }else{
-        io.emit("walgreensBLah")
-    }
-
-
-
-    // const data = await page.evaluate(() => {
-    //     return document.querySelector(".store-locator__StyledStoreSelectionResultContainer-sc-1mm867a-5").innerHTML
-    // })
-    // console.log(data)
-
-    // await browser.close();
-};
-walgreens();
 io.on("connection", socket => {
     setInterval(() => {
         request("https://www.cvs.com/immunizations/covid-19-vaccine/immunizations/covid-19-vaccine.vaccine-status.NJ.json?vaccineinfo", (error,response, html) => {
