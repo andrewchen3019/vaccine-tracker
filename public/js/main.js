@@ -4,6 +4,7 @@ setInterval(() => {
     $("#mercy-iframe").attr("src", "https://mychart.mercycare.org/mychart/openscheduling/SignupAndSchedule/EmbeddedSchedule?id=10237&vt=3138&public=1");
 }, 5000)
 const socket = io();
+socket.emit("state", "IA");
 socket.on("CVS", ({ data }) => {
     const json = JSON.parse(data);
     const tableData = json.responsePayloadData.data.NJ;
