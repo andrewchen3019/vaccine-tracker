@@ -49,7 +49,7 @@ io.on("connection", socket => {
             }
         })
         socket.emit("time", {time: moment().format("MMM D [at] h:mm:ss")})
-    }, 1000)
+    }, 2000)
 
 });
 
