@@ -1,40 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaccine Tracker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header><h1>Vaccine Tracker</h1></header>
-    <p id="last-updated">Page last updated: unknown</p>
-    <div id="root">
-        <div class="container not-available">
-            <h1>Mercy Cedar Rapids</h1>
-            <div class="status" id="mercy-status">
-                <iframe src="https://mychart.mercycare.org/mychart/openscheduling/SignupAndSchedule/EmbeddedSchedule?id=10237&vt=3138&public=1" frameborder="0" id="mercy-iframe"></iframe>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vaccine Tracker</title>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        <header class="showcase">
+            <div class="content">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M360 0H24C10.8 0 0 10.8 0 24v48c0 13.2 10.8 24 24 24h336c13.2 0 24-10.8 24-24V24c0-13.2-10.8-24-24-24zM32 480c0 17.6 14.4 32 32 32h256c17.6 0 32-14.4 32-32V128H32v352zm64-184c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8v48c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48z" class="logo"></path></svg>
+                <div class="title">
+                    Welcome To Vaccine Tracker
+                </div>
+                <div class="text">
+                    This website helps you see if there is any vaccine available.
+                </div>
             </div>
-        </div>
-        <div class="container not-available" id="cvs-container">
-            <h1>CVS Pharmacy</h1>
-            <div id="cvs-content">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        </header>
 
-                    <path opacity=".25" d="M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4"></path>
-                    <path d="M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z">
-                      <animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.8s" repeatCount="indefinite"></animateTransform>
-                    </path>
-                </svg>
+        <!-- services -->
+        <section class="services">
+            <div class="container grid-3 center">
+                <div>
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" height="3em" width="3em" xmlns="http://www.w3.org/2000/svg"><path d="M0 117.66v346.32c0 11.32 11.43 19.06 21.94 14.86L160 416V32L20.12 87.95A32.006 32.006 0 0 0 0 117.66zM192 416l192 64V96L192 32v384zM554.06 33.16L416 96v384l139.88-55.95A31.996 31.996 0 0 0 576 394.34V48.02c0-11.32-11.43-19.06-21.94-14.86z"></path></svg>
+                    <h3>Location</h3>
+                    <p>Helps you track down vaccines anywhere.</p>
+                </div>
+                <div>
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="3em" width="3em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M6.455 19L2 22.5V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6.455zM7 10v2h2v-2H7zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2z"></path></g></svg>
+                    <h3>Notifications</h3>
+                    <p>Gives you notifications once there is a vaccine available.</p>
+                </div>
+                <div>
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="3em" width="3em" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"></path></svg>
+                    <h3>Always Available</h3>
+                    <p>Use anywhere, anytime.</p>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
+        <!-- about -->
+        <section class="about bg-light">
+            <div class="container">
+                <div class="grid-2">
+                    <div class="center">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="10em" width="10em" xmlns="http://www.w3.org/2000/svg"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"></path></svg>
+                    </div>
+                    <div>
+                        <h3>About Us</h3>
+                        <p>We will show you the places as well as the availability. You will be notified as soon as there is a vaccine available. You can use anywhere and anything at anytime, as well as very exact information.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- search -->
+        <section class="search bg-dark center">
+            <h1>Select State</h1>
+            <form action="#results">
+                <select name="state" id="state"></select>
+                <input type="submit" value="submit">
+            </form>
+        </section>
+
+        <!-- info -->
+        <section id="results">
+            <header class="state-header"><h1>State</h1></header>
+            <section class="info bg-meduim center" id="cvs">
+                <h1>CVS Pharmacy</h1>
+                <table class="table" id="cvs-table"><tr><td>Loading...</td></tr></table>
+            </section>
+        </section>
+
+
+        <footer class="center bg-dark">
+            <p>Vaccine Tracker &copy; 2021</p>
+        </footer>
+    </body>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+    integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+    crossorigin="anonymous"
+  ></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="RegisterServiceWorker.js"></script>
+    <script src="js/select.js"></script>
     <script src="js/main.js"></script>
-</body>
 </html>

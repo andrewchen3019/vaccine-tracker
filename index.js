@@ -9,7 +9,6 @@ const webpush = require("web-push");
 const bodyParser = require("body-parser");
 
 
-
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);

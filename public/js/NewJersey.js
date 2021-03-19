@@ -42,7 +42,3 @@ socket.on("CVS", ({ data }) => {
 socket.on("time", ({time}) => {
     $("#last-updated").html(`Last updated: ${time}`)
 } )
-
-socket.on("walgreensAvailable", () => {
-    console.log("YAy")
-}) 
