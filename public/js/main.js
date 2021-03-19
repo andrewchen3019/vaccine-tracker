@@ -1,30 +1,67 @@
 
-/*socket io*/
-setInterval(() => {
-    $("#mercy-iframe").attr("src", "https://mychart.mercycare.org/mychart/openscheduling/SignupAndSchedule/EmbeddedSchedule?id=10237&vt=3138&public=1");
-}, 5000)
+window.alerted = false;
 const socket = io();
-socket.on("CVS", ({ data }) => {
-    const json = JSON.parse(data);
-    const tableData = json.responsePayloadData.data.NJ;
-    let tableHTML = "";
-    $("#cvs-content").html(`<table class="table" id="cvs-table">
-    </table>`)
-    tableData.forEach(row => {
-        if (row.status !== "Fully Booked") {
-            send();
-            $("#cvs-container").removeClass("not-available")
-            $("#cvs-container").addClass("available")
-            const element = `<tr><td>${row.city.charAt(0) + row.city.slice(1).toLowerCase()}</td><td class='available-status'>${row.status}</td></tr>`;
-            tableHTML += element;
+function renderData(data) {
+    if (data) {
+        let tableHTML = "";
+        $("#cvs-content").html(`<table class="table" id="cvs-table">
+        </table>`)
+        let available = false;
+        data.forEach(row => {
+            if (row.status !== "Fully Booked") {
+                available = true;
+    
+                const element = `<tr><td>${row.city.charAt(0) + row.city.slice(1).toLowerCase()}, ${row.state}</td><td class='available-status'>${row.status}</td></tr>`;
+                tableHTML += element;
+            }else{
+                const element = `<tr><td>${row.city.charAt(0) + row.city.slice(1).toLowerCase()}, ${row.state}</td><td class='not-available-status'>${row.status}</td></tr>`;
+                tableHTML += element;
+            }
+    
+        });
+        if (available) {
+            if (window.alerted == false) {
+                send();
+                window.alerted = true;
+            }
+            $(".state-header").removeClass("not-available-header");
+            $(".state-header").addClass("available-header");
         }else{
-            const element = `<tr><td>${row.city.charAt(0) + row.city.slice(1).toLowerCase()}</td><td class='not-available-status'>${row.status}</td></tr>`;
-            tableHTML += element;
+            window.alerted = false;
+            $(".state-header").addClass("not-available-header");
+            $(".state-header").removeClass("available-header");
         }
+        $("#cvs-table").html(tableHTML)
+        socket.emit("state", state)
+    }else{
+        $("#cvs").html("<h1>CVS Pharmacy</h1><div class='error'>It looks like CVS is not adminstering vaccines in your state</div>")
+    }
 
-    });
-    $("#cvs-table").html(tableHTML)
-})
-socket.on("time", ({time}) => {
-    $("#last-updated").html(`Last updated: ${time}`)
-} )
+}
+const {state} = Qs.parse(location.search,{
+    ignoreQueryPrefix: true
+});
+if (state) {
+    states.forEach(stateObj => {
+        if (stateObj.abbreviation === state) {
+            $("#header-h1").html(`Vaccine Tracker - ${stateObj.name}`)
+        }
+    })
+    select.value = state;
+
+    socket.emit("state", state)
+    socket.on("CVS", ({ data }) => {
+        const json = JSON.parse(data);
+        $("#cvs-content").html(`<table class="table" id="cvs-table">
+        </table>`);
+        eval(`renderData(json.responsePayloadData.data.${state})`)
+    })
+    socket.on("time", ({time}) => {
+        $("#last-updated").html(`Last updated: ${time}`)
+    } )
+
+
+}else{
+    console.log("home page")
+}
+
