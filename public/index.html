@@ -59,18 +59,18 @@
         <!-- search -->
         <section class="search bg-dark center">
             <h1>Select State</h1>
-            <form action="#results">
+            <form action="#results" id="state-form">
                 <select name="state" id="state"></select>
-                <input type="submit" value="submit">
+                <!-- <input type="submit" value="submit"> -->
             </form>
         </section>
 
         <!-- info -->
         <section id="results">
-            <header class="state-header"><h1>State</h1></header>
+            <header class="state-header"><a href="https://www.cvs.com/immunizations/covid-19-vaccine"><h1 id="state-header-name">State</h1> <span id="last-updated">Last updated: unknown</span></a></header>
             <section class="info bg-meduim center" id="cvs">
                 <h1>CVS Pharmacy</h1>
-                <table class="table" id="cvs-table"><tr><td>Loading...</td></tr></table>
+                <table class="table" id="cvs-table"><tr><td>Select a state</td></tr></table>
             </section>
         </section>
 

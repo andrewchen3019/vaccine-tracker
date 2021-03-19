@@ -10,11 +10,22 @@ function renderData(data) {
         data.forEach(row => {
             if (row.status !== "Fully Booked") {
                 available = true;
-    
-                const element = `<tr><td>${row.city.charAt(0) + row.city.slice(1).toLowerCase()}, ${row.state}</td><td class='available-status'>${row.status}</td></tr>`;
+                const words = row.city.split(" ");
+                let finalWord = "";
+                words.forEach(word => {
+                    finalWord += word.charAt(0) + word.slice(1).toLowerCase() + " ";
+                })
+                finalWord = finalWord.slice(0, finalWord.length-2)
+                const element = `<tr><td>${finalWord}, ${row.state}</td><td class='available-status'>${row.status}</td></tr>`;
                 tableHTML += element;
             }else{
-                const element = `<tr><td>${row.city.charAt(0) + row.city.slice(1).toLowerCase()}, ${row.state}</td><td class='not-available-status'>${row.status}</td></tr>`;
+                const words = row.city.split(" ");
+                let finalWord = "";
+                words.forEach(word => {
+                    finalWord += word.charAt(0) + word.slice(1).toLowerCase() + " ";
+                })
+                finalWord = finalWord.slice(0, finalWord.length-2)
+                const element = `<tr><td>${finalWord}, ${row.state}</td><td class='not-available-status'>${row.status}</td></tr>`;
                 tableHTML += element;
             }
     
@@ -44,7 +55,7 @@ const {state} = Qs.parse(location.search,{
 if (state) {
     states.forEach(stateObj => {
         if (stateObj.abbreviation === state) {
-            $("#header-h1").html(`Vaccine Tracker - ${stateObj.name}`)
+            $("#state-header-name").html(stateObj.name);
         }
     })
     select.value = state;

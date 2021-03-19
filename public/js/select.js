@@ -44,10 +44,6 @@ const states = [
         "abbreviation": "GA"
     },
     {
-        "name": "Guam",
-        "abbreviation": "GU"
-    },
-    {
         "name": "Hawaii",
         "abbreviation": "HI"
     },
@@ -160,10 +156,6 @@ const states = [
         "abbreviation": "PA"
     },
     {
-        "name": "Puerto Rico",
-        "abbreviation": "PR"
-    },
-    {
         "name": "Rhode Island",
         "abbreviation": "RI"
     },
@@ -220,3 +212,6 @@ states.forEach(state => {
     select.appendChild(option)
 })
 
+select.addEventListener("change", () => {
+    document.getElementById("state-form").submit();
+})
