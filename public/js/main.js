@@ -15,7 +15,7 @@ function renderData(data) {
                 words.forEach(word => {
                     finalWord += word.charAt(0) + word.slice(1).toLowerCase() + " ";
                 })
-                finalWord = finalWord.slice(0, finalWord.length-2)
+                finalWord = finalWord.slice(0, finalWord.length-1)
                 const element = `<tr><td>${finalWord}, ${row.state}</td><td class='available-status'>${row.status}</td></tr>`;
                 tableHTML += element;
             }else{
@@ -24,7 +24,7 @@ function renderData(data) {
                 words.forEach(word => {
                     finalWord += word.charAt(0) + word.slice(1).toLowerCase() + " ";
                 })
-                finalWord = finalWord.slice(0, finalWord.length-2)
+                finalWord = finalWord.slice(0, finalWord.length-1)
                 const element = `<tr><td>${finalWord}, ${row.state}</td><td class='not-available-status'>${row.status}</td></tr>`;
                 tableHTML += element;
             }
